@@ -58,5 +58,4 @@ fi
 
 rm tmp_memory.txt
 
-# Relaunch script loop
 ./ai.sh
