@@ -58,4 +58,4 @@ fi
 
 rm tmp_memory.txt
 
-./ai.sh
+./JTAICB.sh
