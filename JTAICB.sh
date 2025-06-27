@@ -48,7 +48,7 @@ RESPONSE=$(curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemi
   -d "$REQUEST_BODY")
 
 if echo "$RESPONSE" | grep -q '"role":'; then
-  AI_REPLY=$(echo "$RESPONSE" | grep -o '"text":[[:space:]]*"[^"]*"' | head -1 | sed -E 's/"text":[[:space:]]*"//;s/"$//' | sed 's/\\n/ /g; s/\\"/"/g; s/\\\\/\\/g')
+  AI_REPLY=$(echo "$RESPONSE" | jq -r '.candidates[0].content.parts[0].text' | sed 's/"/'\'''\''/g')
   echo "AI: $AI_REPLY"
   echo "AI: $AI_REPLY" >> "$MEMORY_FILE"
 else
