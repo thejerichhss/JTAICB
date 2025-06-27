@@ -1,5 +1,7 @@
 #!/bin/bash
 
+clear
+
 API_KEY="GEMINIAPIKEY_PLACEDHERE"
 MEMORY_FILE="conversation_memory.txt"
 
