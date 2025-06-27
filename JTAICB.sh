@@ -23,7 +23,7 @@ while IFS= read -r line; do
     continue  
   fi
 
-  ESCAPED_TEXT=$(awk -v txt="$TEXT" 'BEGIN { gsub(/"/, "\\\\\"", txt); print txt }')
+  ESCAPED_TEXT=$(printf '%s' "$TEXT" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' -e 's/\t/\\t/g' -e 's/\n/\\n/g')
   CONTEXT_JSON="$CONTEXT_JSON
 {
   \"role\": \"$ROLE\",
@@ -48,7 +48,7 @@ RESPONSE=$(curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemi
   -d "$REQUEST_BODY")
 
 if echo "$RESPONSE" | grep -q '"role":'; then
-  AI_REPLY=$(echo "$RESPONSE" | grep -o '"text": *"[^"]*' | head -1 | cut -d'"' -f4 | sed 's/\\n/ /g')
+  AI_REPLY=$(echo "$RESPONSE" | grep -o '"text":[[:space:]]*"[^"]*"' | head -1 | sed -E 's/"text":[[:space:]]*"//;s/"$//' | sed 's/\\n/ /g; s/\\"/"/g; s/\\\\/\\/g')
   echo "AI: $AI_REPLY"
   echo "AI: $AI_REPLY" >> "$MEMORY_FILE"
 else
