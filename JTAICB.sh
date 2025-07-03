@@ -1,7 +1,8 @@
 #!/bin/bash
 
-API_KEY="GEMINIAPIKEY_PLACEDHERE"
+API_KEY="AIzaSyAeVlhzPOqDhWWB_oGL2m7u9gW35zNLUxw"
 MEMORY_FILE="conversation_memory.txt"
+VOICE_MEMORY="ai_response.txt"
 
 read -p "Enter your prompt: " USER_PROMPT
 
@@ -51,11 +52,15 @@ if echo "$RESPONSE" | grep -q '"role":'; then
   AI_REPLY=$(echo "$RESPONSE" | jq -r '.candidates[0].content.parts[0].text' | sed 's/"/'\'''\''/g')
   echo "AI: $AI_REPLY"
   echo "AI: $AI_REPLY" >> "$MEMORY_FILE"
+  echo "$AI_REPLY" >> "$VOICE_MEMORY"
+  ./voice.sh 
 else
   echo "X API Error:"
   echo "$RESPONSE"
 fi
 
 rm tmp_memory.txt
+
+truncate -s 0 ai_response.txt
 
 ./JTAICB.sh
