@@ -53,6 +53,7 @@ if echo "$RESPONSE" | grep -q '"role":'; then
   echo "AI: $AI_REPLY"
   echo "AI: $AI_REPLY" >> "$MEMORY_FILE"
   echo "$AI_REPLY" >> "$VOICE_MEMORY"
+  sed -i 's/\*//g' ai_response.txt
   ./voice.sh 
 else
   echo "X API Error:"
