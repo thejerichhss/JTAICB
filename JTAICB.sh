@@ -1,6 +1,6 @@
 #!/bin/bash
 
-API_KEY="AIzaSyAeVlhzPOqDhWWB_oGL2m7u9gW35zNLUxw"
+API_KEY="GEMINIAPIKEY_PLACEDHERE"
 MEMORY_FILE="conversation_memory.txt"
 VOICE_MEMORY="ai_response.txt"
 
