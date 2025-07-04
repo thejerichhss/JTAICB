@@ -2,18 +2,15 @@
 
 API_KEY="GEMINIAPIKEY_PLACEDHERE"
 MEMORY_FILE="conversation_memory.txt"
-VOICE_MEMORY="ai_response.txt"
-
-echo Speak: 
+VOICE_MEMORY="ai_response.txt" 
 
 ./voicerecord.sh
 
-USER_PROMPT="$(cat output.txt | xargs)"
+USER_PROMPT="$(cat output.txt)"
 
 if [[ -z "$USER_PROMPT" ]]; then
   echo "AI: I didn’t catch that—could you try saying it again?" | tee -a "$MEMORY_FILE" >> "$VOICE_MEMORY"
   ./voice.sh
-  exit 0
 fi
 
 echo "User: $USER_PROMPT" >> "$MEMORY_FILE"
