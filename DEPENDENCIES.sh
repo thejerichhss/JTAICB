@@ -1,7 +1,7 @@
-sudo apt install curl
+sudo apt install curl -y
 
-sudo apt install jq 
+sudo apt install jq -y
 
-sudo apt install nano
+sudo apt install nano -y
 
-sudo apt install grep sed awk coreutils
+sudo apt install grep sed awk coreutils -y
