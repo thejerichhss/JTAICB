@@ -8,7 +8,7 @@ sudo apt install nano -y
 
 sudo apt install espeak -y
 
-sudo apt install cat -y
+sudo apt install grep sed awk coreutils -y
 
 sudo apt install ffmpeg -y
 
