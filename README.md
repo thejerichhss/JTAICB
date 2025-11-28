@@ -1,5 +1,6 @@
 ## JTAICB Help
 *JTAICB*, (or *Jerich's Terminal AI Chatbot*) is **Gemini, but in a terminal.** (Works with WSL!) 
+
 #1. Clone or Download JTAICB. 
 ```bash
 git clone https://github.com/thejerichhss/JTAICB.git
